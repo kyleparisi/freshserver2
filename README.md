@@ -1,4 +1,4 @@
-# Fresh Server
+# Fresh Server 2
 
 Automatically setup a github user on a server.
 
@@ -17,6 +17,9 @@ Additionally, you'll need:
 
 ```shell
 ansible-playbook playbook.yml --extra-vars "github_user=kyleparisi"
+
+# test
+./test-playbooks.sh
 ```
 
 You can also update the example `cloud-config` file to automatically provision
