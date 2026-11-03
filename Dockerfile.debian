@@ -1,0 +1,33 @@
+FROM debian:bookworm
+
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install Python, Ansible and dependencies.
+# Debian 12 marks the system Python as externally managed (PEP 668),
+# so Ansible comes from apt rather than pip.
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-apt \
+    ansible \
+    openssh-client \
+    openssh-server \
+    git \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a test user (like the admin user on Debian EC2 images)
+RUN useradd -m -s /bin/bash admin && \
+    echo 'admin ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Create SSH privilege separation directory and generate host keys
+RUN mkdir -p /run/sshd && ssh-keygen -A
+
+# Copy the playbook and roles
+COPY . /ansible
+
+# Set working directory
+WORKDIR /ansible
+
+# Entry point to run the playbook
+CMD ["ansible-playbook", "playbook.yml"]
