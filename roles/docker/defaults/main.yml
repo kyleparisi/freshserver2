@@ -1,2 +1,6 @@
 ---
 github_user: kyleparisi
+
+# Default login user for the image; added to the docker group when it exists.
+# Ubuntu cloud images use "ubuntu", Debian cloud images use "admin".
+docker_default_user: "{{ 'ubuntu' if ansible_distribution == 'Ubuntu' else 'admin' }}"

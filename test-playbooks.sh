@@ -8,6 +8,12 @@ docker run --rm freshserver-ubuntu-test
 
 echo -e "\n===========================================\n"
 
+echo "Testing Ansible playbook on Debian..."
+docker build -f Dockerfile.debian -t freshserver-debian-test .
+docker run --rm freshserver-debian-test
+
+echo -e "\n===========================================\n"
+
 echo "Testing Ansible playbook on Amazon Image..."
 docker build -f Dockerfile.amazon -t freshserver-amazon-test .
 docker run --rm freshserver-amazon-test

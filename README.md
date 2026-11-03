@@ -2,6 +2,8 @@
 
 Automatically setup a github user on a server.
 
+Supported distributions: Ubuntu, Debian, and Amazon Linux 2.
+
 ## Prerequisites
 
 Ensure you have accessible ssh keys that match your GitHub public keys.  This can be found by going to

@@ -14,7 +14,7 @@
 
 - name: Download AWS CLI v2 installer
   get_url:
-    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    url: https://awscli.amazonaws.com/awscli-exe-linux-{{ 'aarch64' if ansible_architecture in ['aarch64', 'arm64'] else 'x86_64' }}.zip
     dest: /tmp/awscliv2.zip
   when: awscli_check.rc != 0
 
