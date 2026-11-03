@@ -3,6 +3,7 @@
   apt:
     name: "{{ packages }}"
     install_recommends: no
+    update_cache: yes
   vars:
     packages:
       - jq
